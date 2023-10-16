@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:swomato/data/dummy_data.dart';
+import 'package:swomato/widgets/category_grid_item.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
@@ -10,20 +12,17 @@ class CategoriesScreen extends StatelessWidget {
         title: const Text("Choose Category"),
       ),
       body: GridView(
+        padding: const EdgeInsets.all(24),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: 1.5,
           crossAxisSpacing: 20,
           mainAxisSpacing: 20,
         ),
-        children: const [
-          Text("1"),
-          Text("1"),
-          Text("1"),
-          Text("1"),
-          Text("1"),
-          Text("1"),
-          Text("1"),
+        children: [
+          //  availableCategories.map((category) => CategoryGridItem(category: category),).toList(),
+          for (final category in availableCategories)
+            CategoryGridItem(category: category),
         ],
       ),
     );
