@@ -6,11 +6,11 @@ import 'package:swomato/screens/meal_details.dart';
 class MealsScreen extends StatelessWidget {
   const MealsScreen({
     Key? key, // Use Key key instead of super.key
-    required this.title,
+    this.title,
     required this.meals,
   }) : super(key: key);
 
-  final String title;
+  final String? title;
   final List<Meal> meals;
 
   void selectMeal(BuildContext context, Meal meal) {
@@ -60,11 +60,15 @@ class MealsScreen extends StatelessWidget {
       );
     }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
-      body: content,
-    );
+    if (title == null) {
+      return content;
+    } else {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(title!),
+        ),
+        body: content,
+      );
+    }
   }
 }
